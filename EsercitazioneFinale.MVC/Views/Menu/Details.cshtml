@@ -1,0 +1,50 @@
+﻿@model MenuViewModel
+
+@{
+    decimal tot = 0;
+
+    foreach(var item in @Model.Piatti)
+    {
+        tot = tot + item.Prezzo;
+    }
+}
+
+<h1>Dettagli del @Model.Nome</h1>
+
+<table class="table table-hover table-bordered table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Prezzo</th>
+            @if (User.IsInRole("Administrator"))
+            {
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Piatti)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Prezzo€</td>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <td>
+                        <a asp-controller="Menu" asp-action="Decouple" asp-route-id="@item.PiattoID" class="btn btn-outline-primary">Disaccoppia</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Prezzo Totale: @tot €</th>
+            <th></th>
+            @if (User.IsInRole("Administrator"))
+            {
+                <th></th>
+            }
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,23 @@
+﻿@model UtenteLoginViewModel
+
+<form method="post">
+
+    <input type="hidden" asp-for="ReturnUrl" />
+
+    <label asp-for="Username"></label>
+    <br />
+    <input asp-for="Username" />
+    <span asp-validation-for="Username"></span>
+    <br />
+
+
+    <label asp-for="Password"></label>
+    <br />
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+    <br />
+    <br />
+
+    <input type="submit" value="Login" class="btn btn-outline-primary" />
+
+</form>
